@@ -191,7 +191,7 @@ public class DesignerResource implements RESTResource {
 		try {
 			long timerStart = System.currentTimeMillis();
 
-			fin = new FileInputStream(HABminConstants.HABMIN_DATA_DIR + DESIGN_FILE);
+			fin = new FileInputStream(HABminConstants.getDataDirectory() + DESIGN_FILE);
 
 			XStream xstream = new XStream(new StaxDriver());
 			xstream.alias("designlist", DesignerListBean.class);
@@ -216,7 +216,6 @@ public class DesignerResource implements RESTResource {
 		} catch (FileNotFoundException e) {
 			designs = new DesignerListBean();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -282,10 +281,10 @@ public class DesignerResource implements RESTResource {
 	}
 
 	private boolean saveDesigns(DesignerListBean designs) {
-		File folder = new File(HABminConstants.HABMIN_DATA_DIR);
+		File folder = new File(HABminConstants.getDataDirectory());
 		// create path for serialization.
 		if (!folder.exists()) {
-			logger.debug("Creating directory {}", HABminConstants.HABMIN_DATA_DIR);
+			logger.debug("Creating directory {}", HABminConstants.getDataDirectory());
 			folder.mkdirs();
 		}
 		
@@ -293,7 +292,7 @@ public class DesignerResource implements RESTResource {
 		try {
 			long timerStart = System.currentTimeMillis();
 
-			fout = new FileOutputStream(HABminConstants.HABMIN_DATA_DIR + DESIGN_FILE);
+			fout = new FileOutputStream(HABminConstants.getDataDirectory() + DESIGN_FILE);
 
 			XStream xstream = new XStream(new StaxDriver());
 			xstream.alias("designlist", DesignerListBean.class);
