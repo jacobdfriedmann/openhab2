@@ -86,7 +86,7 @@ public class ChartResource implements RESTResource {
 	}
 
 	@GET
-	@Path("/charts")
+	@Path("/")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response httpGetPersistenceCharts(@Context HttpHeaders headers,
 			@QueryParam("jsoncallback") @DefaultValue("callback") String callback) {
@@ -97,7 +97,7 @@ public class ChartResource implements RESTResource {
 	}
 
 	@POST
-	@Path("/charts")
+	@Path("/")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response httpPostPersistenceCharts(@Context HttpHeaders headers,
 			@QueryParam("jsoncallback") @DefaultValue("callback") String callback, ChartConfigBean chart) {
@@ -108,7 +108,7 @@ public class ChartResource implements RESTResource {
 	}
 
 	@PUT
-	@Path("/charts/{chartid: [a-zA-Z_0-9]*}")
+	@Path("/{chartid: [a-zA-Z_0-9]*}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response httpPutPersistenceCharts(@Context HttpHeaders headers,
 			@QueryParam("jsoncallback") @DefaultValue("callback") String callback,
@@ -120,7 +120,7 @@ public class ChartResource implements RESTResource {
 	}
 
 	@DELETE
-	@Path("/charts/{chartid: [a-zA-Z_0-9]*}")
+	@Path("/{chartid: [a-zA-Z_0-9]*}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response httpDeletePersistenceCharts(@Context HttpHeaders headers, @QueryParam("type") String type,
 			@QueryParam("jsoncallback") @DefaultValue("callback") String callback, @PathParam("chartid") Integer chartId) {
@@ -131,7 +131,7 @@ public class ChartResource implements RESTResource {
 	}
 
 	@GET
-	@Path("/charts/{chartid: [a-zA-Z_0-9]*}")
+	@Path("/{chartid: [a-zA-Z_0-9]*}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response httpGetPersistenceCharts(@Context HttpHeaders headers,
 			@QueryParam("jsoncallback") @DefaultValue("callback") String callback, @PathParam("chartid") Integer chartId) {
@@ -237,8 +237,9 @@ public class ChartResource implements RESTResource {
 		}
 
 		// If it was found in the list, remove it...
-		if (foundChart != null)
+		if (foundChart != null) {
 			charts.entries.remove(foundChart);
+		}
 
 		saveCharts(charts);
 

@@ -246,46 +246,49 @@ public class PersistenceResource implements RESTResource {
 		filter.setEndDate(dateTimeEnd);
 		filter.setOrdering(Ordering.ASCENDING);
 		filter.setPageSize(Integer.MAX_VALUE);
-		
+
 		result = qService.query(filter);
 		if(result != null) {
 			Iterator<HistoricItem> it = result.iterator();
-	
+
 			// Iterate through the data
 			while (it.hasNext()) {
 				HistoricItem historicItem = it.next();
 				state = historicItem.getState();
-	
+
 				// For 'binary' states, we need to replicate the data
 				// to avoid diagonal lines
 				if(state instanceof OnOffType || state instanceof OpenClosedType) {
 					bean.addData(historicItem.getTimestamp().getTime(), state);
 				}
-	
+
 				double value = bean.addData(historicItem.getTimestamp().getTime(), state);
-	
+
 				average += value;
 				quantity++;
-	
+
 				if (minimum == null || value < minimum) {
 					minimum = value;
 					timeMinimum = historicItem.getTimestamp();
 				}
-	
+
 				if (maximum == null || value > maximum) {
 					maximum = value;
 					timeMaximum = historicItem.getTimestamp();
 				}
 			}
-	
+
 			// Add the last value again at the end time
-			average += bean.addData(dateTimeEnd.getTime(), state);
-			quantity++;
+			if(state != null) {
+				average += bean.addData(dateTimeEnd.getTime(), state);
+				quantity++;
+			}
 		}
 
 		bean.datapoints = Long.toString(quantity);
-		if (quantity > 0)
+		if (quantity > 0) {
 			bean.stateavg = Double.toString(average / quantity);
+		}
 
 		if (minimum != null) {
 			bean.statemin = minimum.toString();

@@ -17,6 +17,9 @@ import org.openhab.core.library.types.DecimalType;
 import org.openhab.core.library.types.OnOffType;
 import org.openhab.core.library.types.OpenClosedType;
 import org.openhab.core.types.State;
+import org.openhab.ui.habmin.internal.services.chart.ChartResource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 
@@ -58,12 +61,14 @@ public class ItemHistoryBean {
 	public List<HistoryDataBean> data;
 	
 	public ItemHistoryBean() {};
+	private static final Logger logger = LoggerFactory.getLogger(ChartResource.class);
 
 	public double addData(Long time, State state) {
+//		logger.debug("addData: {}  {}  {}", time, state.toString(), state.getClass());
 		if(data == null) {
 			data = new ArrayList<HistoryDataBean>();
 		}
-		
+
 		double value;
 		if (state instanceof DecimalType) {
 			value = ((DecimalType) state).doubleValue();				
@@ -85,13 +90,14 @@ public class ItemHistoryBean {
 			}
 		}
 		else {
-//			logger.debug("Unsupported item type in chart: {}", value.getClass().toString());
+//			logger.debug("Unsupported item type in chart: {}", state.getClass().toString());
 			value = 0;
 		}
+//		logger.debug("addData: {}  {}   -----", time, value);
 
 		HistoryDataBean newVal = new HistoryDataBean();
 		newVal.time = time;
-		newVal.state = Double.toString(value);
+		newVal.state = state.toString();//Double.toString(value);
 		data.add(newVal);
 		
 		return value;
