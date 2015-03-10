@@ -77,7 +77,7 @@ public class RuleResource implements RESTResource {
 	}
 
 	@GET
-	@Path("{modelname: .+}")
+	@Path("/{modelname: .+}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response httpGetModelSource(@Context HttpHeaders headers,
 			@PathParam("modelname") String modelName,
@@ -89,7 +89,7 @@ public class RuleResource implements RESTResource {
 	}
 
 	@PUT
-	@Path("{modelname: .+}")
+	@Path("/{modelname: .+}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response httpPutModelSource(@Context HttpHeaders headers,
 			@PathParam("modelname") String modelName,

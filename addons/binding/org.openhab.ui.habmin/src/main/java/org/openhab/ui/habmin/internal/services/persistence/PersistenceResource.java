@@ -101,7 +101,6 @@ public class PersistenceResource implements RESTResource {
 	UriInfo uriInfo;
 
 	@GET
-	@Path("/")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response httpGetPersistenceServices(@Context HttpHeaders headers,
 			@QueryParam("jsoncallback") @DefaultValue("callback") String callback) {

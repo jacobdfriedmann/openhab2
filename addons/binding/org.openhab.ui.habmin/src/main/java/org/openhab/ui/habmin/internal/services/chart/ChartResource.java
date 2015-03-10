@@ -86,7 +86,6 @@ public class ChartResource implements RESTResource {
 	}
 
 	@GET
-	@Path("/")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response httpGetPersistenceCharts(@Context HttpHeaders headers,
 			@QueryParam("jsoncallback") @DefaultValue("callback") String callback) {
@@ -97,7 +96,6 @@ public class ChartResource implements RESTResource {
 	}
 
 	@POST
-	@Path("/")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public Response httpPostPersistenceCharts(@Context HttpHeaders headers,
 			@QueryParam("jsoncallback") @DefaultValue("callback") String callback, ChartConfigBean chart) {
