@@ -5,7 +5,7 @@
  * This software is copyright of Chris Jackson under the GPL license.
  * Note that this licence may be changed at a later date.
  *
- * (c) 2014 Chris Jackson (chris@cd-jackson.com)
+ * (c) 2014-2015 Chris Jackson (chris@cd-jackson.com)
  */
 angular.module('HABmin.rules', [
     'ui.router',
@@ -63,7 +63,10 @@ angular.module('HABmin.rules', [
             useWrapMode : true,
             showGutter: true,
             theme:'tomorrow',
-            mode: 'openhabrules'
+            mode: 'openhabrules',
+            onLoad: function (editor) {
+                $scope.aceEditor = editor;
+            }
         };
 
         // Align the Ace Editor theme with the Bootstrap theme

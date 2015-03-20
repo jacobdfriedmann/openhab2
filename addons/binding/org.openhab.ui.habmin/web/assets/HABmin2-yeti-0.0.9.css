@@ -482,6 +482,9 @@
   overflow: visible;
   clip: auto;
 }
+.yeti [role="button"] {
+  cursor: pointer;
+}
 .yeti h1,
 .yeti h2,
 .yeti h3,
@@ -1883,9 +1886,12 @@ a.yeti .bg-danger:hover {
 .yeti .form-control[disabled],
 .yeti .form-control[readonly],
 fieldset[disabled] .yeti .form-control {
-  cursor: not-allowed;
   background-color: #eeeeee;
   opacity: 1;
+}
+.yeti .form-control[disabled],
+fieldset[disabled] .yeti .form-control {
+  cursor: not-allowed;
 }
 textarea.yeti .form-control {
   height: auto;
@@ -1953,6 +1959,7 @@ textarea.yeti .form-control {
 }
 .yeti .radio-inline,
 .yeti .checkbox-inline {
+  position: relative;
   display: inline-block;
   padding-left: 20px;
   margin-bottom: 0;
@@ -1989,6 +1996,7 @@ fieldset[disabled] .yeti .checkbox label {
   padding-top: 9px;
   padding-bottom: 9px;
   margin-bottom: 0;
+  min-height: 36px;
 }
 .yeti .form-control-static.input-lg,
 .yeti .form-control-static.input-sm {
@@ -2030,6 +2038,7 @@ select[multiple].yeti .form-group-sm .form-control {
   padding: 8px 12px;
   font-size: 12px;
   line-height: 1.5;
+  min-height: 33px;
 }
 .yeti .input-lg {
   height: 60px;
@@ -2066,6 +2075,7 @@ select[multiple].yeti .form-group-lg .form-control {
   padding: 16px 20px;
   font-size: 19px;
   line-height: 1.33;
+  min-height: 40px;
 }
 .yeti .has-feedback {
   position: relative;
@@ -2680,11 +2690,9 @@ fieldset[disabled] .yeti .btn-link:focus {
 }
 .yeti .collapse {
   display: none;
-  visibility: hidden;
 }
 .yeti .collapse.in {
   display: block;
-  visibility: visible;
 }
 tr.yeti .collapse.in {
   display: table-row;
@@ -2709,7 +2717,7 @@ tbody.yeti .collapse.in {
   height: 0;
   margin-left: 2px;
   vertical-align: middle;
-  border-top: 4px solid;
+  border-top: 4px dashed;
   border-right: 4px solid transparent;
   border-left: 4px solid transparent;
 }
@@ -3348,11 +3356,9 @@ select[multiple].yeti .input-group-sm > .input-group-btn > .btn {
 }
 .yeti .tab-content > .tab-pane {
   display: none;
-  visibility: hidden;
 }
 .yeti .tab-content > .active {
   display: block;
-  visibility: visible;
 }
 .yeti .nav-tabs .dropdown-menu {
   margin-top: -1px;
@@ -3394,7 +3400,6 @@ select[multiple].yeti .input-group-sm > .input-group-btn > .btn {
   }
   .yeti .navbar-collapse.collapse {
     display: block !important;
-    visibility: visible !important;
     height: auto !important;
     padding-bottom: 0;
     overflow: visible !important;
@@ -3972,7 +3977,8 @@ a.yeti .label:focus {
   position: relative;
   top: -1px;
 }
-.btn-xs .yeti .badge {
+.btn-xs .yeti .badge,
+.btn-group-xs > .btn .yeti .badge {
   top: 0;
   padding: 1px 5px;
 }
@@ -4807,10 +4813,12 @@ button.yeti .close {
   outline: 0;
 }
 .yeti .modal-backdrop {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
+  bottom: 0;
   left: 0;
+  z-index: 1040;
   background-color: #000000;
 }
 .yeti .modal-backdrop.fade {
@@ -4881,7 +4889,6 @@ button.yeti .close {
   position: absolute;
   z-index: 1070;
   display: block;
-  visibility: visible;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
   font-weight: normal;
@@ -5178,7 +5185,6 @@ button.yeti .close {
 }
 .yeti .hidden {
   display: none !important;
-  visibility: hidden !important;
 }
 .yeti .affix {
   position: fixed;
@@ -7505,4 +7511,7 @@ button.yeti .close {
 .yeti .zwave-logreader-popover {
   max-width: 100%;
   white-space: nowrap;
+}
+.yeti .category-icon {
+  width: 40px;
 }

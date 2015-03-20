@@ -10,7 +10,7 @@
 .paper {
   /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
   /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
-  @import url("//fonts.googleapis.com/css?family=Roboto:300,400,500");
+  @import url("//fonts.googleapis.com/css?family=Roboto:300,400,500,700");
   /*
   Don't allow users to select text.  It gets annoying when trying to
   drag a block and selected text moves instead.
@@ -481,6 +481,9 @@
   margin: 0;
   overflow: visible;
   clip: auto;
+}
+.paper [role="button"] {
+  cursor: pointer;
 }
 .paper h1,
 .paper h2,
@@ -1883,9 +1886,12 @@ a.paper .bg-danger:hover {
 .paper .form-control[disabled],
 .paper .form-control[readonly],
 fieldset[disabled] .paper .form-control {
-  cursor: not-allowed;
   background-color: transparent;
   opacity: 1;
+}
+.paper .form-control[disabled],
+fieldset[disabled] .paper .form-control {
+  cursor: not-allowed;
 }
 textarea.paper .form-control {
   height: auto;
@@ -1953,6 +1959,7 @@ textarea.paper .form-control {
 }
 .paper .radio-inline,
 .paper .checkbox-inline {
+  position: relative;
   display: inline-block;
   padding-left: 20px;
   margin-bottom: 0;
@@ -1989,6 +1996,7 @@ fieldset[disabled] .paper .checkbox label {
   padding-top: 7px;
   padding-bottom: 7px;
   margin-bottom: 0;
+  min-height: 36px;
 }
 .paper .form-control-static.input-lg,
 .paper .form-control-static.input-sm {
@@ -2030,12 +2038,13 @@ select[multiple].paper .form-group-sm .form-control {
   padding: 5px 10px;
   font-size: 12px;
   line-height: 1.5;
+  min-height: 35px;
 }
 .paper .input-lg {
   height: 45px;
   padding: 10px 16px;
   font-size: 17px;
-  line-height: 1.33;
+  line-height: 1.3333333;
   border-radius: 3px;
 }
 select.paper .input-lg {
@@ -2050,7 +2059,7 @@ select[multiple].paper .input-lg {
   height: 45px;
   padding: 10px 16px;
   font-size: 17px;
-  line-height: 1.33;
+  line-height: 1.3333333;
   border-radius: 3px;
 }
 select.paper .form-group-lg .form-control {
@@ -2065,7 +2074,8 @@ select[multiple].paper .form-group-lg .form-control {
   height: 45px;
   padding: 10px 16px;
   font-size: 17px;
-  line-height: 1.33;
+  line-height: 1.3333333;
+  min-height: 40px;
 }
 .paper .has-feedback {
   position: relative;
@@ -2275,7 +2285,7 @@ select[multiple].paper .form-group-lg .form-control {
 }
 @media (min-width: 768px) {
   .paper .form-horizontal .form-group-lg .control-label {
-    padding-top: 14.3px;
+    padding-top: 14.333333px;
   }
 }
 @media (min-width: 768px) {
@@ -2642,7 +2652,7 @@ fieldset[disabled] .paper .btn-link:focus {
 .paper .btn-lg {
   padding: 10px 16px;
   font-size: 17px;
-  line-height: 1.33;
+  line-height: 1.3333333;
   border-radius: 3px;
 }
 .paper .btn-sm {
@@ -2680,11 +2690,9 @@ fieldset[disabled] .paper .btn-link:focus {
 }
 .paper .collapse {
   display: none;
-  visibility: hidden;
 }
 .paper .collapse.in {
   display: block;
-  visibility: visible;
 }
 tr.paper .collapse.in {
   display: table-row;
@@ -2709,7 +2717,7 @@ tbody.paper .collapse.in {
   height: 0;
   margin-left: 2px;
   vertical-align: middle;
-  border-top: 4px solid;
+  border-top: 4px dashed;
   border-right: 4px solid transparent;
   border-left: 4px solid transparent;
 }
@@ -3034,7 +3042,7 @@ tbody.paper .collapse.in {
   height: 45px;
   padding: 10px 16px;
   font-size: 17px;
-  line-height: 1.33;
+  line-height: 1.3333333;
   border-radius: 3px;
 }
 select.paper .input-group-lg > .form-control,
@@ -3348,11 +3356,9 @@ select[multiple].paper .input-group-sm > .input-group-btn > .btn {
 }
 .paper .tab-content > .tab-pane {
   display: none;
-  visibility: hidden;
 }
 .paper .tab-content > .active {
   display: block;
-  visibility: visible;
 }
 .paper .nav-tabs .dropdown-menu {
   margin-top: -1px;
@@ -3394,7 +3400,6 @@ select[multiple].paper .input-group-sm > .input-group-btn > .btn {
   }
   .paper .navbar-collapse.collapse {
     display: block !important;
-    visibility: visible !important;
     height: auto !important;
     padding-bottom: 0;
     overflow: visible !important;
@@ -3972,7 +3977,8 @@ a.paper .label:focus {
   position: relative;
   top: -1px;
 }
-.btn-xs .paper .badge {
+.btn-xs .paper .badge,
+.btn-group-xs > .btn .paper .badge {
   top: 0;
   padding: 1px 5px;
 }
@@ -4766,7 +4772,7 @@ button.paper .close {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1040;
+  z-index: 1050;
   -webkit-overflow-scrolling: touch;
   outline: 0;
 }
@@ -4807,10 +4813,12 @@ button.paper .close {
   outline: 0;
 }
 .paper .modal-backdrop {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
+  bottom: 0;
   left: 0;
+  z-index: 1040;
   background-color: #000000;
 }
 .paper .modal-backdrop.fade {
@@ -4881,7 +4889,6 @@ button.paper .close {
   position: absolute;
   z-index: 1070;
   display: block;
-  visibility: visible;
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 12px;
   font-weight: normal;
@@ -5177,7 +5184,6 @@ button.paper .close {
 }
 .paper .hidden {
   display: none !important;
-  visibility: hidden !important;
 }
 .paper .affix {
   position: fixed;
@@ -5572,6 +5578,18 @@ button.paper .close {
 .paper .btn-default.disabled {
   border: 1px solid #eeeeee;
 }
+.paper .btn-group .btn + .btn,
+.paper .btn-group .btn + .btn-group,
+.paper .btn-group .btn-group + .btn,
+.paper .btn-group .btn-group + .btn-group {
+  margin-left: 0;
+}
+.paper .btn-group-vertical > .btn + .btn,
+.paper .btn-group-vertical > .btn + .btn-group,
+.paper .btn-group-vertical > .btn-group + .btn,
+.paper .btn-group-vertical > .btn-group + .btn-group {
+  margin-top: 0;
+}
 .paper body {
   -webkit-font-smoothing: antialiased;
   letter-spacing: .1px;
@@ -5591,6 +5609,9 @@ button.paper .close {
   -o-transition: all 0.2s;
   transition: all 0.2s;
 }
+.paper label {
+  font-weight: normal;
+}
 .paper textarea,
 .paper textarea.form-control,
 .paper input.form-control,
@@ -5601,10 +5622,12 @@ button.paper .close {
 .paper [type=text].form-control,
 .paper [type=password].form-control,
 .paper [type=email].form-control,
-.paper [type=tel].form-control {
+.paper [type=tel].form-control,
+.paper [contenteditable].form-control {
   padding: 0;
   border: none;
   border-radius: 0;
+  -webkit-appearance: none;
   -webkit-box-shadow: inset 0 -1px 0 #dddddd;
   box-shadow: inset 0 -1px 0 #dddddd;
   font-size: 16px;
@@ -5619,7 +5642,8 @@ button.paper .close {
 .paper [type=text].form-control:focus,
 .paper [type=password].form-control:focus,
 .paper [type=email].form-control:focus,
-.paper [type=tel].form-control:focus {
+.paper [type=tel].form-control:focus,
+.paper [contenteditable].form-control:focus {
   -webkit-box-shadow: inset 0 -2px 0 #2196f3;
   box-shadow: inset 0 -2px 0 #2196f3;
 }
@@ -5634,6 +5658,7 @@ button.paper .close {
 .paper [type=password].form-control[disabled],
 .paper [type=email].form-control[disabled],
 .paper [type=tel].form-control[disabled],
+.paper [contenteditable].form-control[disabled],
 .paper textarea[readonly],
 .paper textarea.form-control[readonly],
 .paper input.form-control[readonly],
@@ -5644,50 +5669,264 @@ button.paper .close {
 .paper [type=text].form-control[readonly],
 .paper [type=password].form-control[readonly],
 .paper [type=email].form-control[readonly],
-.paper [type=tel].form-control[readonly] {
+.paper [type=tel].form-control[readonly],
+.paper [contenteditable].form-control[readonly] {
   -webkit-box-shadow: none;
   box-shadow: none;
   border-bottom: 1px dotted #ddd;
+}
+.paper textarea.input-sm,
+.paper textarea.form-control.input-sm,
+.paper input.form-control.input-sm,
+.paper input[type=text].input-sm,
+.paper input[type=password].input-sm,
+.paper input[type=email].input-sm,
+.paper input[type=number].input-sm,
+.paper [type=text].form-control.input-sm,
+.paper [type=password].form-control.input-sm,
+.paper [type=email].form-control.input-sm,
+.paper [type=tel].form-control.input-sm,
+.paper [contenteditable].form-control.input-sm {
+  font-size: 12px;
+}
+.paper textarea.input-lg,
+.paper textarea.form-control.input-lg,
+.paper input.form-control.input-lg,
+.paper input[type=text].input-lg,
+.paper input[type=password].input-lg,
+.paper input[type=email].input-lg,
+.paper input[type=number].input-lg,
+.paper [type=text].form-control.input-lg,
+.paper [type=password].form-control.input-lg,
+.paper [type=email].form-control.input-lg,
+.paper [type=tel].form-control.input-lg,
+.paper [contenteditable].form-control.input-lg {
+  font-size: 17px;
 }
 .paper select,
 .paper select.form-control {
   border: 0;
   border-radius: 0;
   -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-left: 0;
+  padding-right: 0\9;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAAJ1BMVEVmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmaP/QSjAAAADHRSTlMAAgMJC0uWpKa6wMxMdjkoAAAANUlEQVR4AeXJyQEAERAAsNl7Hf3X6xt0QL6JpZWq30pdvdadme+0PMdzvHm8YThHcT1H7K0BtOMDniZhWOgAAAAASUVORK5CYII=);
+  background-size: 13px;
+  background-repeat: no-repeat;
+  background-position: right center;
   -webkit-box-shadow: inset 0 -1px 0 #dddddd;
   box-shadow: inset 0 -1px 0 #dddddd;
   font-size: 16px;
-  padding-left: 0px;
+  line-height: 1.5;
+}
+.paper select::-ms-expand,
+.paper select.form-control::-ms-expand {
+  display: none;
+}
+.paper select.input-sm,
+.paper select.form-control.input-sm {
+  font-size: 12px;
+}
+.paper select.input-lg,
+.paper select.form-control.input-lg {
+  font-size: 17px;
 }
 .paper select:focus,
 .paper select.form-control:focus {
   -webkit-box-shadow: inset 0 -2px 0 #2196f3;
   box-shadow: inset 0 -2px 0 #2196f3;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAAJ1BMVEUhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISF8S9ewAAAADHRSTlMAAgMJC0uWpKa6wMxMdjkoAAAANUlEQVR4AeXJyQEAERAAsNl7Hf3X6xt0QL6JpZWq30pdvdadme+0PMdzvHm8YThHcT1H7K0BtOMDniZhWOgAAAAASUVORK5CYII=);
 }
-.paper .has-warning input,
+.paper select[multiple],
+.paper select.form-control[multiple] {
+  background: none;
+}
+.paper .radio label,
+.paper .radio-inline label,
+.paper .checkbox label,
+.paper .checkbox-inline label {
+  padding-left: 25px;
+}
+.paper .radio input[type="radio"],
+.paper .radio-inline input[type="radio"],
+.paper .checkbox input[type="radio"],
+.paper .checkbox-inline input[type="radio"],
+.paper .radio input[type="checkbox"],
+.paper .radio-inline input[type="checkbox"],
+.paper .checkbox input[type="checkbox"],
+.paper .checkbox-inline input[type="checkbox"] {
+  margin-left: -25px;
+}
+.paper input[type="radio"],
+.paper .radio input[type="radio"],
+.paper .radio-inline input[type="radio"] {
+  position: relative;
+  margin-top: 5px;
+  margin-right: 4px;
+  vertical-align: -4px;
+  border: none;
+  background-color: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+.paper input[type="radio"]:focus,
+.paper .radio input[type="radio"]:focus,
+.paper .radio-inline input[type="radio"]:focus {
+  outline: none;
+}
+.paper input[type="radio"]:before,
+.paper .radio input[type="radio"]:before,
+.paper .radio-inline input[type="radio"]:before,
+.paper input[type="radio"]:after,
+.paper .radio input[type="radio"]:after,
+.paper .radio-inline input[type="radio"]:after {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin-top: -3px;
+  border-radius: 50%;
+  -webkit-transition: 240ms;
+  -o-transition: 240ms;
+  transition: 240ms;
+}
+.paper input[type="radio"]:before,
+.paper .radio input[type="radio"]:before,
+.paper .radio-inline input[type="radio"]:before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #2196f3;
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+}
+.paper input[type="radio"]:after,
+.paper .radio input[type="radio"]:after,
+.paper .radio-inline input[type="radio"]:after {
+  border: 2px solid #666666;
+}
+.paper input[type="radio"]:checked:before,
+.paper .radio input[type="radio"]:checked:before,
+.paper .radio-inline input[type="radio"]:checked:before {
+  -webkit-transform: scale(0.5);
+  -ms-transform: scale(0.5);
+  -o-transform: scale(0.5);
+  transform: scale(0.5);
+}
+.paper input[type="radio"]:disabled:checked:before,
+.paper .radio input[type="radio"]:disabled:checked:before,
+.paper .radio-inline input[type="radio"]:disabled:checked:before {
+  background-color: #bbbbbb;
+}
+.paper input[type="radio"]:checked:after,
+.paper .radio input[type="radio"]:checked:after,
+.paper .radio-inline input[type="radio"]:checked:after {
+  border-color: #2196f3;
+}
+.paper input[type="radio"]:disabled:after,
+.paper .radio input[type="radio"]:disabled:after,
+.paper .radio-inline input[type="radio"]:disabled:after,
+.paper input[type="radio"]:disabled:checked:after,
+.paper .radio input[type="radio"]:disabled:checked:after,
+.paper .radio-inline input[type="radio"]:disabled:checked:after {
+  border-color: #bbbbbb;
+}
+.paper input[type="checkbox"],
+.paper .checkbox input[type="checkbox"],
+.paper .checkbox-inline input[type="checkbox"] {
+  position: relative;
+  vertical-align: -4px;
+  border: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+.paper input[type="checkbox"]:focus,
+.paper .checkbox input[type="checkbox"]:focus,
+.paper .checkbox-inline input[type="checkbox"]:focus {
+  outline: none;
+}
+.paper input[type="checkbox"]:after,
+.paper .checkbox input[type="checkbox"]:after,
+.paper .checkbox-inline input[type="checkbox"]:after {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin-top: -2px;
+  margin-right: 5px;
+  border: 2px solid #666666;
+  border-radius: 2px;
+  -webkit-transition: 240ms;
+  -o-transition: 240ms;
+  transition: 240ms;
+}
+.paper input[type="checkbox"]:checked:before,
+.paper .checkbox input[type="checkbox"]:checked:before,
+.paper .checkbox-inline input[type="checkbox"]:checked:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 6px;
+  display: table;
+  width: 6px;
+  height: 12px;
+  border: 2px solid #fff;
+  border-top-width: 0;
+  border-left-width: 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.paper input[type="checkbox"]:checked:after,
+.paper .checkbox input[type="checkbox"]:checked:after,
+.paper .checkbox-inline input[type="checkbox"]:checked:after {
+  background-color: #2196f3;
+  border-color: #2196f3;
+}
+.paper input[type="checkbox"]:disabled:after,
+.paper .checkbox input[type="checkbox"]:disabled:after,
+.paper .checkbox-inline input[type="checkbox"]:disabled:after {
+  border-color: #bbbbbb;
+}
+.paper input[type="checkbox"]:disabled:checked:after,
+.paper .checkbox input[type="checkbox"]:disabled:checked:after,
+.paper .checkbox-inline input[type="checkbox"]:disabled:checked:after {
+  background-color: #bbbbbb;
+  border-color: transparent;
+}
+.paper .has-warning input:not([type=checkbox]),
 .paper .has-warning .form-control,
-.paper .has-warning input:focus,
+.paper .has-warning input:not([type=checkbox]):focus,
 .paper .has-warning .form-control:focus {
   -webkit-box-shadow: inset 0 -2px 0 #ff9800;
   box-shadow: inset 0 -2px 0 #ff9800;
 }
-.paper .has-error input,
+.paper .has-error input:not([type=checkbox]),
 .paper .has-error .form-control,
-.paper .has-error input:focus,
+.paper .has-error input:not([type=checkbox]):focus,
 .paper .has-error .form-control:focus {
   -webkit-box-shadow: inset 0 -2px 0 #e51c23;
   box-shadow: inset 0 -2px 0 #e51c23;
 }
-.paper .has-success input,
+.paper .has-success input:not([type=checkbox]),
 .paper .has-success .form-control,
-.paper .has-success input:focus,
+.paper .has-success input:not([type=checkbox]):focus,
 .paper .has-success .form-control:focus {
   -webkit-box-shadow: inset 0 -2px 0 #4caf50;
   box-shadow: inset 0 -2px 0 #4caf50;
 }
-.paper .nav-tabs > li > a {
-  border: none;
+.paper .nav-tabs > li > a,
+.paper .nav-tabs > li > a:focus {
   margin-right: 0;
+  background-color: transparent;
+  border: none;
   color: #666666;
   -webkit-box-shadow: inset 0 -1px 0 #dddddd;
   box-shadow: inset 0 -1px 0 #dddddd;
@@ -5695,19 +5934,22 @@ button.paper .close {
   -o-transition: all 0.2s;
   transition: all 0.2s;
 }
-.paper .nav-tabs > li > a:hover {
+.paper .nav-tabs > li > a:hover,
+.paper .nav-tabs > li > a:focus:hover {
   background-color: transparent;
   -webkit-box-shadow: inset 0 -2px 0 #2196f3;
   box-shadow: inset 0 -2px 0 #2196f3;
   color: #2196f3;
 }
-.paper .nav-tabs > li.active > a {
+.paper .nav-tabs > li.active > a,
+.paper .nav-tabs > li.active > a:focus {
   border: none;
   -webkit-box-shadow: inset 0 -2px 0 #2196f3;
   box-shadow: inset 0 -2px 0 #2196f3;
   color: #2196f3;
 }
-.paper .nav-tabs > li.active > a:hover {
+.paper .nav-tabs > li.active > a:hover,
+.paper .nav-tabs > li.active > a:focus:hover {
   border: none;
   color: #2196f3;
 }
@@ -5854,6 +6096,14 @@ button.paper .close {
   border: none;
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+.paper .carousel-caption h1,
+.paper .carousel-caption h2,
+.paper .carousel-caption h3,
+.paper .carousel-caption h4,
+.paper .carousel-caption h5,
+.paper .carousel-caption h6 {
+  color: inherit;
 }
 .paper .blocklySvg {
   background-color: #ffffff;
@@ -7660,4 +7910,7 @@ button.paper .close {
 .paper .zwave-logreader-popover {
   max-width: 100%;
   white-space: nowrap;
+}
+.paper .category-icon {
+  width: 40px;
 }

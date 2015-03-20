@@ -5,7 +5,7 @@
  * This software is copyright of Chris Jackson under the GPL license.
  * Note that this licence may be changed at a later date.
  *
- * (c) 2014 Chris Jackson (chris@cd-jackson.com)
+ * (c) 2014-2015 Chris Jackson (chris@cd-jackson.com)
  */
 angular.module('HABmin.chart', [
     'ui.router',
@@ -18,6 +18,7 @@ angular.module('HABmin.chart', [
     'HABmin.chartModel',
     'HABmin.chartSave',
     'HABmin.iconModel',
+    'HABmin.userModel',
     'ngVis',
     'ngConfirmClick',
     'ResizePanel',
@@ -44,7 +45,7 @@ angular.module('HABmin.chart', [
     })
 
     .controller('DashboardChartCtrl',
-    function DashboardChartCtrl($scope, locale, ItemModel, PersistenceServiceModel, PersistenceItemModel, PersistenceDataModel, ChartListModel, ChartSave, SidepanelService, growl, VisDataSet, $interval, $timeout) {
+    function DashboardChartCtrl($scope, locale, ItemModel, PersistenceServiceModel, PersistenceItemModel, PersistenceDataModel, ChartListModel, ChartSave, SidepanelService, growl, VisDataSet, UserService,  $interval, $timeout) {
         var itemsLoaded = 0;
         var itemsLoading = 0;
         var newChart;
@@ -81,7 +82,8 @@ angular.module('HABmin.chart', [
             },
             showCurrentTime: false,
             legend: true,
-            zoomMin: 60000
+            zoomMin: 60000,
+            locale: UserService.getLanguage()
         };
 
         $scope.graphLoaded = false;
@@ -188,7 +190,7 @@ angular.module('HABmin.chart', [
                 if (item.selected === true) {
                     var newItem = {};
                     newItem.item = item.name;
-                    newItem.label = item.label;
+                    newItem.label = item.label.title;
                     chart.items.push(newItem);
                 }
             });
@@ -215,10 +217,10 @@ angular.module('HABmin.chart', [
 
             ChartListModel.deleteChart($scope.selectedChart.id).then(
                 function() {
-                    growl.success(locale.getString('habmin.chartDeleteOk'));
+                    growl.success(locale.getString('habmin.chartDeleteOk', {name: $scope.selectedChart.name}));
                 },
                 function() {
-                    growl.warning(locale.getString('habmin.chartDeleteError'));
+                    growl.warning(locale.getString('habmin.chartDeleteError', {name: $scope.selectedChart.name}));
                 }
             );
         };
@@ -706,7 +708,7 @@ angular.module('HABmin.chart', [
                 }
             }
 
-            dataGroups.add({
+            var options = {
                 id: itemRef,
                 content: itemCfg.label,
                 style: style,
@@ -718,7 +720,13 @@ angular.module('HABmin.chart', [
                     //    },
                     shaded: shaded
                 }
-            });
+            };
+
+            if(["bar","line"].indexOf(itemCfg.chart) != -1) {
+                options.options.style = itemCfg.chart;
+            }
+
+            dataGroups.add(options);
 
             newChart = addSeries(newChart, data, itemCfg.repeatTime, itemRef);
 

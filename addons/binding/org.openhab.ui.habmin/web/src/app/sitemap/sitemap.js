@@ -5,7 +5,7 @@
  * This software is copyright of Chris Jackson under the GPL license.
  * Note that this licence may be changed at a later date.
  *
- * (c) 2014 Chris Jackson (chris@cd-jackson.com)
+ * (c) 2014-2015 Chris Jackson (chris@cd-jackson.com)
  */
 angular.module('HABmin.sitemap', [
     'ui.router',
@@ -266,10 +266,10 @@ angular.module('HABmin.sitemap', [
                         // Process children
                         // Handle differences between OH1 and OH2
                         var children = "";
-                        if (widget.widgets != null && widget.widgets.length > 0) {
+                        if (widget.widgets != null && [].concat(widget.widgets).length > 0) {
                             children = "<div>" + processWidget([].concat(widget.widgets)) + "</div>";
                         }
-                        else if (widget.widget != null && widget.widget.length > 0) {
+                        else if (widget.widget != null && [].concat(widget.widget).length > 0) {
                             children = "<div>" + processWidget([].concat(widget.widget)) + "</div>";
                         }
                         else {

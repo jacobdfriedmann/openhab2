@@ -5,14 +5,17 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="shortcut icon" href="assets/favicon.ico" />
+
+
     
 
     <!-- compiled CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/HABmin2-paper-0.0.8.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/HABmin2-paper-0.0.9.css"/>
     
-    <link rel="stylesheet" type="text/css" href="assets/HABmin2-slate-0.0.8.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/HABmin2-slate-0.0.9.css"/>
     
-    <link rel="stylesheet" type="text/css" href="assets/HABmin2-yeti-0.0.8.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/HABmin2-yeti-0.0.9.css"/>
     
     <link rel="stylesheet" type="text/css" href="assets/angular-growl.css"/>
     
@@ -74,6 +77,8 @@
     
     <script type="text/javascript" src="vendor/moment/moment.js"></script>
     
+    <script type="text/javascript" src="vendor/moment/locale/fr.js"></script>
+    
     <script type="text/javascript" src="vendor/angular-blockly/build/angular-blockly.js"></script>
     
     <script type="text/javascript" src="vendor/angular-blockly/build/blockly_compressed.js"></script>
@@ -110,8 +115,6 @@
     
     <script type="text/javascript" src="vendor/fullcalendar/gcal.js"></script>
     
-    <script type="text/javascript" src="vendor/angular-timeago/src/timeAgo.js"></script>
-    
     <script type="text/javascript" src="vendor/vis/dist/vis.js"></script>
     
     <script type="text/javascript" src="vendor/angular-base64/angular-base64.js"></script>
@@ -140,7 +143,11 @@
     
     <script type="text/javascript" src="src/app/binding/zwave.js"></script>
     
+    <script type="text/javascript" src="src/app/configuration/configParameter.js"></script>
+    
     <script type="text/javascript" src="src/app/configuration/thingConfig.js"></script>
+    
+    <script type="text/javascript" src="src/app/configuration/thingDiscovery.js"></script>
     
     <script type="text/javascript" src="src/app/dashboard/chart.js"></script>
     
@@ -155,6 +162,8 @@
     <script type="text/javascript" src="src/app/models/chartModel.js"></script>
     
     <script type="text/javascript" src="src/app/models/designerModel.js"></script>
+    
+    <script type="text/javascript" src="src/app/models/eventsModel.js"></script>
     
     <script type="text/javascript" src="src/app/models/iconModel.js"></script>
     
@@ -173,6 +182,8 @@
     <script type="text/javascript" src="src/app/models/thingModel.js"></script>
     
     <script type="text/javascript" src="src/app/models/userModel.js"></script>
+    
+    <script type="text/javascript" src="src/app/models/zwaveModel.js"></script>
     
     <script type="text/javascript" src="src/app/sitemap/sitemap.js"></script>
     
@@ -212,8 +223,8 @@
     
 
     <script type="text/javascript">
-        document.HABminVersionString = "0.0.8";
-        document.HABminVersionDate = "2015-03-08T14:44:15";
+        document.HABminVersionString = "0.0.9";
+        document.HABminVersionDate = "2015-03-20T21:10:08";
 
         
         <!-- Handle application startup within browser -->
@@ -430,6 +441,12 @@
                                 </a>
                             </li>
                             <li>
+                                <a ui-sref="discovery">
+                                    <span class="fa fa-fw fa-paper-plane"></span>
+                                    <span i18n="habmin.mainDiscovery"></span>
+                                </a>
+                            </li>
+                            <li>
                             <a ui-sref="rules">
                                 <span class="fa fa-fw fa-wifi"></span>
                                 <span i181n="habmin.mainZWave">Items</span>
@@ -504,7 +521,7 @@
                     <li class="navbar-notification">
                         <p class="no-padding" ng-if="notificationCnt"
                            popup-show="templates/notifications/summary.tpl.html" popup-placement="left"
-                           popup-shown="showNotifications()" popup-class="zwave-logreader-popover">
+                           popup-class="zwave-logreader-popover">
                             <span class="badge">
                                 {{notificationCnt}}
                             </span>

@@ -5,7 +5,7 @@
  * This software is copyright of Chris Jackson under the GPL license.
  * Note that this licence may be changed at a later date.
  *
- * (c) 2014 Chris Jackson (chris@cd-jackson.com)
+ * (c) 2014-2015 Chris Jackson (chris@cd-jackson.com)
  */
 angular.module('HABmin.ruleModel', [
     'HABmin.userModel',
@@ -22,6 +22,11 @@ angular.module('HABmin.ruleModel', [
 
             RestService.getService(svcName).then(
                 function (url) {
+                    if(url == null) {
+                        deferred.resolve(null);
+                        return;
+                    }
+
                     $http.get(url)
                         .success(function (data) {
                             console.log("Fetch completed in", new Date().getTime() - tStart);
