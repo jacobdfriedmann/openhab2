@@ -270,7 +270,9 @@ public abstract class ZigBeeCoordinatorHandler extends BaseBridgeHandler
 			addNewDevice(device);
 		}
 
-		
+		// Allow devices to join for 180 seconds
+		zigbeeApi.permitJoin(180);
+
 //		ZigBeeDiscoveryManager discoveryManager = zigbeeApi.getZigBeeDiscoveryManager();
 //		discoveryManager.
 	}
