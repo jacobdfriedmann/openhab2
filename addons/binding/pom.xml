@@ -16,11 +16,12 @@
   <packaging>pom</packaging>
 
   <modules>
-      <module>org.openhab.ui.habmin</module>
-      <module>org.openhab.binding.sonos</module>
+	<module>org.openhab.ui.habmin</module>
+	<module>org.openhab.binding.sonos</module>
     <module>org.openhab.binding.max</module>
     <module>org.openhab.binding.max.test</module>
     <module>org.openhab.binding.network</module>
+    <module>org.openhab.binding.freebox</module>
   </modules>
 
 </project>
