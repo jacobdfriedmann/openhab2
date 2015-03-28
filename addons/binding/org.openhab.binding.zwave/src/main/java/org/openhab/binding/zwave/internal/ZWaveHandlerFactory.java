@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.Set;
 
 import org.openhab.binding.zwave.handler.ZWaveControllerHandler;
-
+import org.openhab.binding.zwave.handler.ZWaveSerialHandler;
 import org.eclipse.smarthome.config.core.Configuration;
 import org.eclipse.smarthome.core.thing.Bridge;
 import org.eclipse.smarthome.core.thing.Thing;
@@ -43,7 +43,7 @@ public class ZWaveHandlerFactory extends BaseThingHandlerFactory {
         ThingTypeUID thingTypeUID = thing.getThingTypeUID();
 
         if (thingTypeUID.equals(CONTROLLER_SERIAL)) {
-            return new ZWaveControllerHandler(thing);
+            return new ZWaveSerialHandler(thing);
         }
 
         return null;
