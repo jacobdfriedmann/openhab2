@@ -21,17 +21,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="widget")
 public class DashboardWidgetBean {
 
-	public Integer axis;
-	public String label;
-	public String color;
-	public String format;
-	public Double minimum;
-	public Double maximum;
-	public String position;
-	public String majorColor;
-	public Integer majorWidth;
-	public String majorStyle;
-	public String minorColor;
-	public Integer minorWidth;
-	public String minorStyle;
+	public Integer col;
+	public Integer row;
+	public Integer sizeX;
+	public Integer sizeY;
+	public String type;
+	
+	public DashboardWidgetOptionsBean options;
 }

@@ -15,6 +15,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -31,9 +33,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import org.eclipse.smarthome.core.items.ItemRegistry;
 import org.eclipse.smarthome.io.rest.RESTResource;
-import org.eclipse.smarthome.ui.items.ItemUIRegistry;
 import org.openhab.ui.habmin.HABminConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,20 +70,7 @@ public class DashboardResource implements RESTResource {
 
 	@Context
 	UriInfo uriInfo;
-	
-	static private ItemUIRegistry itemUIRegistry;
 
-	public void setItemUIRegistry(ItemUIRegistry itemUIRegistry) {
-		DashboardResource.itemUIRegistry = itemUIRegistry;
-	}
-
-	public void unsetItemUIRegistry(ItemRegistry itemUIRegistry) {
-		DashboardResource.itemUIRegistry = null;
-	}
-
-	static public ItemUIRegistry getItemUIRegistry() {
-		return itemUIRegistry;
-	}
 
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
@@ -139,21 +126,6 @@ public class DashboardResource implements RESTResource {
 		return Response.ok(responseObject).build();
 	}
 
-	static public org.eclipse.smarthome.core.items.Item getItem(String itemname) {
-		ItemUIRegistry registry = getItemUIRegistry();
-		if (registry != null) {
-			try {
-				org.eclipse.smarthome.core.items.Item item;
-				item = registry.getItem(itemname);
-
-				return item;
-			} catch (org.eclipse.smarthome.core.items.ItemNotFoundException e) {
-				logger.debug(e.getMessage());
-			}
-		}
-		return null;
-	}
-
 	private DashboardConfigBean putDashboardBean(Integer dashboardRef, DashboardConfigBean bean) {
 		if (dashboardRef == 0) {
 			bean.id = null;
@@ -189,14 +161,15 @@ public class DashboardResource implements RESTResource {
 
 		// Now save the updated version
 		list.entries.add(bean);
-		savedashboards(list);
+		saveDashboards(list);
 
 		return bean;
 	}
 
-	private DashboardListBean getDashboardList() {
+	private List<DashboardConfigBean> getDashboardList() {
 		DashboardListBean dashboards = loadDashboards();
-		DashboardListBean newList = new DashboardListBean();
+//		DashboardListBean newList = new DashboardListBean();
+		List<DashboardConfigBean> list = new ArrayList<DashboardConfigBean>();
 
 		// We only want to return the id and name
 		for (DashboardConfigBean i : dashboards.entries) {
@@ -205,10 +178,10 @@ public class DashboardResource implements RESTResource {
 			newDashboard.name = i.name;
 			newDashboard.icon = i.icon;
 
-			newList.entries.add(newDashboard);
+			list.add(newDashboard);
 		}
 
-		return newList;
+		return list;
 	}
 
 	private DashboardConfigBean getDashboard(Integer dashboardRef) {
@@ -222,7 +195,7 @@ public class DashboardResource implements RESTResource {
 		return null;
 	}
 
-	private DashboardListBean deleteDashboard(Integer dashboardRef) {
+	private List<DashboardConfigBean> deleteDashboard(Integer dashboardRef) {
 		DashboardListBean dashboards = loadDashboards();
 
 		DashboardConfigBean foundDashboard = null;
@@ -239,7 +212,7 @@ public class DashboardResource implements RESTResource {
 			dashboards.entries.remove(foundDashboard);
 		}
 
-		savedashboards(dashboards);
+		saveDashboards(dashboards);
 
 		return getDashboardList();
 	}
@@ -255,7 +228,7 @@ public class DashboardResource implements RESTResource {
 		return xstream;
 	}
 
-	private boolean savedashboards(DashboardListBean dashboard) {
+	private boolean saveDashboards(DashboardListBean dashboard) {
 		File folder = new File(HABminConstants.getDataDirectory());
 		// create path for serialization.
 		if (!folder.exists()) {

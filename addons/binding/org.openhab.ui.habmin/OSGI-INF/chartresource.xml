@@ -10,7 +10,6 @@
 -->
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="org.openhab.ui.habmin.charts">
    <implementation class="org.openhab.ui.habmin.internal.services.chart.ChartResource"/>
-   <reference bind="setItemUIRegistry" cardinality="1..1" interface="org.eclipse.smarthome.ui.items.ItemUIRegistry" name="ItemUIRegistry" policy="dynamic" unbind="unsetItemUIRegistry"/>
    <service>
       <provide interface="org.eclipse.smarthome.io.rest.RESTResource"/>
    </service>

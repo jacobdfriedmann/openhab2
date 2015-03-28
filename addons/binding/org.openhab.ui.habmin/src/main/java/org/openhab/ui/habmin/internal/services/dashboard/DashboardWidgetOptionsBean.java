@@ -21,17 +21,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name="options")
 public class DashboardWidgetOptionsBean {
 
-	public Integer axis;
-	public String label;
-	public String color;
-	public String format;
-	public Double minimum;
-	public Double maximum;
-	public String position;
-	public String majorColor;
-	public Integer majorWidth;
-	public String majorStyle;
-	public String minorColor;
-	public Integer minorWidth;
-	public String minorStyle;
+	public String chartId;
+	public String serviceId;
+
+	public String itemId;
+	public Integer barWidth;
+	public Integer borderWidth;
+	public Integer angle;
+	public Integer rotate;
+	public Integer barAngle;
+	public String lineCap;
+	public Integer scaleMin;
+	public Integer scaleMax;
+	public String title;
+	public String units;
+
+
 }

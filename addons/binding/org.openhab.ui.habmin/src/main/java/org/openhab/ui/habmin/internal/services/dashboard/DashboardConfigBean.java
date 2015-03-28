@@ -26,9 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class DashboardConfigBean {
 	public Integer id;
 	public String name;
-	public String title;
 	public String icon;
-	public Integer period;
 
-	public List<DashboardWidgetOptionsBean> axis;
+	public List<DashboardWidgetBean> widgets;
 }
