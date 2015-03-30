@@ -26,8 +26,10 @@
 				<description>Controller is SUC and will receive updates from other controllers in the network</description>
 				<default>false</default>
 			</parameter>
-
 		</config-description>
 
+		<properties>
+			<property name="zwave_plus">false</property>
+		</properties>
 	</bridge-type>
 </thing:thing-descriptions>
