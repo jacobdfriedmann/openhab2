@@ -7,6 +7,7 @@
  */
 package org.openhab.binding.zwave;
 
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.smarthome.core.thing.ThingTypeUID;
@@ -33,9 +34,9 @@ public class ZWaveBindingConstants {
     
     public final static String PARAMETER_NODEID = "nodeid";
 
-    public final static Set<ThingTypeUID> SUPPORTED_BRIDGE_TYPES_UIDS = ImmutableSet.of(
-    		CONTROLLER_SERIAL
-    		);
+    public final static List<String> SUPPORTED_BRIDGE_TYPES_UIDS;// = ImmutableSet.of(
+//    		CONTROLLER_SERIAL
+  //  		);
 
 
 }

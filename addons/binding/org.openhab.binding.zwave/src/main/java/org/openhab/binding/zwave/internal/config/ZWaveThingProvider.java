@@ -37,16 +37,16 @@ public class ZWaveThingProvider implements ThingTypeProvider{
 				);
 
 				
-//				ThingType thing = new ThingType(
-//						new ThingTypeUID(ZWaveBindingConstants.BINDING_ID, manufacturer.Id.toString() + "_" + product.Reference.get(0).Type + "_" + product.Reference.get(0).Id),
-//						ZWaveBindingConstants.SUPPORTED_BRIDGE_TYPES_UIDS,
-//						manufacturer.Name + " :: " + product.Model + " " + database.getLabel(product.Label),
-//						null,			//database.getLabel(product.Description),
-//						null,			// channelDefinitions
-//						null,			// channelGroupDefinitions
-//						null,			// properties
-//						null			//configDescriptionURI
-//						);
+				ThingType thing1 = new ThingType(
+						new ThingTypeUID(ZWaveBindingConstants.BINDING_ID, manufacturer.Id.toString() + "_" + product.Reference.get(0).Type + "_" + product.Reference.get(0).Id),
+						ZWaveBindingConstants.SUPPORTED_BRIDGE_TYPES_UIDS,
+						manufacturer.Name + " " + product.Model + " " + database.getLabel(product.Label),
+						database.getLabel(product.Label),
+						null,			// channelDefinitions
+						null,			// channelGroupDefinitions
+						null,			// properties
+						null			// configDescriptionURI
+						);
 
 
 				things.add(thing);
