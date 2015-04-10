@@ -1,4 +1,4 @@
-package org.bubblecloud.zigbee.network.port;
+package org.openhab.binding.zigbee.network.port;
 
 import gnu.io.CommPort;
 import gnu.io.CommPortIdentifier;
@@ -7,6 +7,7 @@ import gnu.io.PortInUseException;
 import gnu.io.SerialPort;
 import gnu.io.UnsupportedCommOperationException;
 
+import org.bubblecloud.zigbee.network.port.ZigBeePort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

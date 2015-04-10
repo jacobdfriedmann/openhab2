@@ -14,7 +14,6 @@ import java.util.EnumSet;
 import org.bubblecloud.zigbee.ZigBeeApi;
 import org.bubblecloud.zigbee.network.model.DiscoveryMode;
 import org.bubblecloud.zigbee.network.port.ZigBeePort;
-import org.bubblecloud.zigbee.network.port.ZigBeeSerialPortImpl;
 import org.eclipse.smarthome.config.core.Configuration;
 import org.eclipse.smarthome.core.thing.Bridge;
 import org.eclipse.smarthome.core.thing.ChannelUID;
@@ -23,6 +22,7 @@ import org.eclipse.smarthome.core.thing.ThingStatus;
 import org.eclipse.smarthome.core.thing.binding.BaseBridgeHandler;
 import org.eclipse.smarthome.core.thing.binding.BaseThingHandler;
 import org.eclipse.smarthome.core.types.Command;
+import org.openhab.binding.zigbee.network.port.ZigBeeSerialPortImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
