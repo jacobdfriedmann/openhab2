@@ -19,5 +19,5 @@ Service-Component: OSGI-INF/*.xml
 Export-Package: org.openhab.binding.zigbee,
  org.openhab.binding.zigbee.handler
 Bundle-ClassPath: .,
- zigbee-api-2.0.2.jar,
+ lib/zigbee-api-2.0.3-SNAPSHOT.jar,
  nrjavaserial-3.8.8.jar
